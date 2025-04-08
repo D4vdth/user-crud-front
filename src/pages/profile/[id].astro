@@ -1,0 +1,80 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const users = [
+    { id: "1", name: "Juan Pérez", email: "juan@example.com", cell: "32165465", image: "../../../public/image.jpg" },
+    { id: "2", name: "Ana Torres", email: "ana@example.com", cell: "13265465", image: "../../../public/image.jpg" },
+    { id: "3", name: "Carlos Díaz", email: "carlos@example.com", cell: "1321657468", image: "../../../public/image.jpg" },
+    { id: "4", name: "Lucía Gómez", email: "lucia@example.com", cell: "312657654", image: "../../../public/image.jpg" },
+  ];
+
+  return users.map(user => ({
+    params: { id: user.id }
+  }));
+}
+
+const users = [
+  { id: "1", name: "Juan Pérez", email: "juan@example.com", cell: "1325465", image: "../../../public/image.jpg" },
+  { id: "2", name: "Ana Torres", email: "ana@example.com", cell: "2165768", image: "../../../public/image.jpg" },
+  { id: "3", name: "Carlos Díaz", email: "carlos@example.com", cell: "212465465", image: "../../../public/image.jpg" },
+  { id: "4", name: "Lucía Gómez", email: "lucia@example.com", cell: "2154654", image: "../../../public/image.jpg" },
+];
+
+const { id } = Astro.params;
+const user = users.find(u => u.id === id);
+---
+<Layout title="Detalle de user">
+  <main class="p-6 max-w-6xl mx-auto text-white space-y-8">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 backdrop-blur-md">
+      <h1 class="text-3xl font-bold text-white">👤 User Details</h1>
+      <div class="flex flex-wrap gap-3">
+        <a href="/profiles">
+          <button class="flex items-center gap-2 bg-slate-700 hover:bg-green-700 px-4 py-2 rounded-md shadow transition">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
+            </svg>            
+            Back to list
+          </button>
+        </a>
+        <a href="/profiles">
+          <button class="flex items-center gap-2 bg-slate-700 hover:bg-blue-700 px-4 py-2 rounded-md shadow transition">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+            </svg>            
+            Edit
+          </button>
+        </a>
+        <a href="/profiles">
+          <button class="flex items-center gap-2 bg-slate-700 hover:bg-red-700 px-4 py-2 rounded-md shadow transition">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+            </svg>            
+            Delete
+          </button>
+        </a>
+      </div>
+    </div>
+
+    {user ? (
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-slate-800 rounded-xl p-6 shadow-xl">
+        <div class="flex items-center justify-center">
+          <img
+            transition:name={`profile-${id}`}
+            src={user.image}
+            alt={user.name}
+            class="rounded-xl w-64 h-64 object-cover shadow-lg border border-gray-700"
+          />
+        </div>
+
+        <div class="flex flex-col justify-center space-y-4">
+          <h2 class="text-2xl font-semibold text-white">{user.name}</h2>
+          <p class="text-gray-400">{user.email}</p>
+          <p class="text-sm text-gray-400">📱 Cellphone: {user.cell}</p>
+        </div>
+      </div>
+    ) : (
+      <div class="text-center text-red-400 text-xl">User not found.</div>
+    )}
+  </main>
+</Layout>

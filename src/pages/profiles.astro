@@ -1,0 +1,50 @@
+---
+import Layout from '../layouts/Layout.astro';
+const imgExample = "../../public/image.jpg";
+---
+
+<Layout title="User Managment">
+  <main class="p-6 space-y-8 max-w-7xl mx-auto">
+    <h1 class="text-3xl font-bold text-white">User Managment</h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+      <section class="bg-[#1f2229] p-6 rounded-xl shadow space-y-4">
+        <h2 class="text-xl font-semibold text-white mb-4">User register 📝</h2>
+
+        <form class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <input type="text" placeholder="Name" class="col-span-1 p-2 bg-[#2b2f38] text-white border border-gray-600 rounded" />
+          <input type="text" placeholder="Last name" class="col-span-1 p-2 bg-[#2b2f38] text-white border border-gray-600 rounded" />
+          <input type="number" placeholder="Cellphone" class="col-span-1 p-2 bg-[#2b2f38] text-white border border-gray-600 rounded" />
+          <input type="date" placeholder="Birthday" class="col-span-1 p-2 bg-[#2b2f38] text-white border border-gray-600 rounded" />
+          <input type="url" placeholder="URL image" class="col-span-2 p-2 bg-[#2b2f38] text-white border border-gray-600 rounded" />
+
+          <div class="col-span-2 h-48 w-full bg-cover bg-center rounded-lg border border-gray-600"></div>
+
+          <div class="col-span-2 flex justify-end">
+            <button type="submit" class="bg-[#2b2f38] w-full text-white px-6 py-2 rounded hover:bg-green-900 transition">
+              Create
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <section class="bg-[#1f2229] p-6 pt-0 rounded-xl shadow flex flex-col max-h-[560px] overflow-y-auto">
+        <div class="sticky top-0 z-10 -mx-6 px-6 py-4 bg-[#1f2229] rounded-t-xl shadow">
+            <h2 class="text-xl font-semibold text-white">User List 📕</h2>
+          </div>                 
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {[1, 2, 3, 4, 5, 6, 7].map((_, i) => (
+            <a href={`/profile/${i+1}`} class="hover:scale-[1.02] transition-transform">
+              <div class="bg-[#2b2f38] rounded-lg p-4 space-y-2 shadow border border-gray-600">
+                <div transition:name={`profile-${i+1}`} class="h-32 w-full bg-cover bg-center rounded" style={`background-image: url(${imgExample})`}></div>
+                    <p class="text-sm text-gray-400">Name: {i+1}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+    </div>
+  </main>
+</Layout>
