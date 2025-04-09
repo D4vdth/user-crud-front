@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { USER_API } from 'astro:env/server'; 
 
 export async function getStaticPaths() {
   const users = [

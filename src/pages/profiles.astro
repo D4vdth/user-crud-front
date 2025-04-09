@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-const imgExample = "../../public/image.jpg";
+import { USER_API } from 'astro:env/server';
 ---
 
 <Layout title="User Managment">
@@ -13,18 +13,19 @@ const imgExample = "../../public/image.jpg";
         <h2 class="text-xl font-semibold text-white mb-4">User register 📝</h2>
 
         <form class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <input type="text" placeholder="Name" class="col-span-1 p-2 bg-[#2b2f38] text-white border border-gray-600 rounded" />
-          <input type="text" placeholder="Last name" class="col-span-1 p-2 bg-[#2b2f38] text-white border border-gray-600 rounded" />
-          <input type="number" placeholder="Cellphone" class="col-span-1 p-2 bg-[#2b2f38] text-white border border-gray-600 rounded" />
-          <input type="date" placeholder="Birthday" class="col-span-1 p-2 bg-[#2b2f38] text-white border border-gray-600 rounded" />
-          <input type="url" placeholder="URL image" class="col-span-2 p-2 bg-[#2b2f38] text-white border border-gray-600 rounded" />
+          <input id="name" type="text" placeholder="Name" class="col-span-1 p-2 bg-[#2b2f38] text-white border border-gray-600 rounded" />
+          <input id="last-name" type="text" placeholder="Last name" class="col-span-1 p-2 bg-[#2b2f38] text-white border border-gray-600 rounded" />
+          <input id="cellphone" type="number" placeholder="Cellphone" class="col-span-1 p-2 bg-[#2b2f38] text-white border border-gray-600 rounded" />
+          <input id="date" type="date" placeholder="Birthday" class="col-span-1 p-2 bg-[#2b2f38] text-white border border-gray-600 rounded" />
+          <input id="img" type="url" placeholder="URL image" class="col-span-2 p-2 bg-[#2b2f38] text-white border border-gray-600 rounded" />
 
           <div class="col-span-2 h-48 w-full bg-cover bg-center rounded-lg border border-gray-600"></div>
 
           <div class="col-span-2 flex justify-end">
-            <button type="submit" class="bg-[#2b2f38] w-full text-white px-6 py-2 rounded hover:bg-green-900 transition">
+            <button id="create" type="submit" class="bg-[#2b2f38] w-full text-white px-6 py-2 rounded hover:bg-green-900 transition">
               Create
             </button>
+            <div id="result"></div>
           </div>
         </form>
       </section>
@@ -38,7 +39,7 @@ const imgExample = "../../public/image.jpg";
           {[1, 2, 3, 4, 5, 6, 7].map((_, i) => (
             <a href={`/profile/${i+1}`} class="hover:scale-[1.02] transition-transform">
               <div class="bg-[#2b2f38] rounded-lg p-4 space-y-2 shadow border border-gray-600">
-                <div transition:name={`profile-${i+1}`} class="h-32 w-full bg-cover bg-center rounded" style={`background-image: url(${imgExample})`}></div>
+                <div transition:name={`profile-${i+1}`} class="h-32 w-full bg-cover bg-center rounded"></div>
                     <p class="text-sm text-gray-400">Name: {i+1}</p>
               </div>
             </a>
