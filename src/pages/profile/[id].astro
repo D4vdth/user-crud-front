@@ -1,4 +1,5 @@
 ---
+import UserEdit from '../../components/editUser';
 import Layout from '../../layouts/Layout.astro';
 import { USER_API } from 'astro:env/server';
 
@@ -12,7 +13,6 @@ export async function getStaticPaths() {
 }
 
 const { id } = Astro.params;
-
 const res = await fetch(`${USER_API}/${id}`);
 const user = await res.json();
 ---
@@ -26,11 +26,20 @@ const user = await res.json();
         </button>
       </a>
 
-      <form method="post" action={`/api/users/${id}?_method=PUT`} class="inline">
-        <button type="submit" class="flex items-center gap-2 bg-slate-700 hover:bg-blue-700 px-4 py-2 rounded-md shadow transition">
+      <div class="flex gap-2">
+        <button
+          id="edit-btn"
+          type="button"
+          class="flex items-center gap-2 bg-slate-700 hover:bg-blue-700 px-4 py-2 rounded-md shadow transition">
           ✏️ Edit
         </button>
-      </form>
+        <button
+          id="update-btn"
+          type="button"
+          class="hidden flex items-center gap-2 bg-green-700 hover:bg-green-900 px-4 py-2 rounded-md shadow transition">
+          ✅ Update
+        </button>
+      </div>
 
       <form method="post" action={`/api/users/${id}?_method=DELETE`} onsubmit="return confirm('Confirm action')" class="inline">
         <button type="submit" class="flex items-center gap-2 bg-slate-700 hover:bg-red-700 px-4 py-2 rounded-md shadow transition">
@@ -48,11 +57,12 @@ const user = await res.json();
         />
       </div>
 
-      <div class="flex flex-col justify-center space-y-4">
-        <h2 class="text-2xl font-semibold text-white">{user.name}</h2>
-        <p class="text-sm text-gray-400">📱 Cellphone: {user.cell}</p>
-        <p class="text-sm text-gray-400">📧 Email: {user.email}</p>
+      <div class="flex flex-col justify-center space-y-4" id="user-info">
+        <input id="name" disabled value={user.name} class="text-2xl font-semibold text-white bg-transparent outline-none border-none focus:ring-2 focus:ring-blue-700 rounded px-2" />
+        <input id="cell" disabled value={user.cell} class="text-sm text-gray-400 bg-transparent outline-none border-none focus:ring-2 focus:ring-blue-700 rounded px-2" />
+        <input id="email" disabled value={user.email} class="text-sm text-gray-400 bg-transparent outline-none border-none focus:ring-2 focus:ring-blue-700 rounded px-2" />
       </div>
     </div>
   </main>
+  <UserEdit client:load />
 </Layout>
