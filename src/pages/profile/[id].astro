@@ -17,7 +17,6 @@ const res = await fetch(`${USER_API}/${id}`);
 const user = await res.json();
 ---
 
-
 <Layout title="User Details">
   <main class="p-6 max-w-6xl mx-auto text-white space-y-8">
     <div class="flex flex-wrap gap-3">
@@ -27,14 +26,12 @@ const user = await res.json();
         </button>
       </a>
 
-      <!-- Botón Editar -->
       <form method="post" action={`/api/users/${id}?_method=PUT`} class="inline">
         <button type="submit" class="flex items-center gap-2 bg-slate-700 hover:bg-blue-700 px-4 py-2 rounded-md shadow transition">
           ✏️ Edit
         </button>
       </form>
 
-      <!-- Botón Eliminar -->
       <form method="post" action={`/api/users/${id}?_method=DELETE`} onsubmit="return confirm('Are you sure?')" class="inline">
         <button type="submit" class="flex items-center gap-2 bg-slate-700 hover:bg-red-700 px-4 py-2 rounded-md shadow transition">
           🗑️ Delete
