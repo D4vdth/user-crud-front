@@ -1,0 +1,35 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Alice Johnson",
+      "email": "alice@example.com",
+      "cell": "+1234567890",
+      "image": "/image.jpg"
+    },
+    {
+      "id": "2",
+      "name": "Bob Martinez",
+      "email": "bob@example.com",
+      "cell": "+1987654321",
+      "image": "/image.jpg"
+    },
+    {
+      "id": "3",
+      "name": "Clara López",
+      "email": "clara.lopez@example.com",
+      "cell": "+34123456789",
+      "image": "/image.jpg"
+    },
+    {
+      "id": "4",
+      "name": "David Kim",
+      "email": "david.kim@example.com",
+      "cell": "+821012345678",
+      "image": "/image.jpg"
+    },
+    {
+      "id": "6d09"
+    }
+  ]
+}
