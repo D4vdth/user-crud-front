@@ -14,14 +14,13 @@ const users = await res.json();
 
       <section class="bg-[#1f2229] p-6 rounded-xl shadow space-y-4">
         <h2 class="text-xl font-semibold text-white mb-4">User Register 📝</h2>
-        <form method="post" action="http://localhost:3001/users" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <form method="post" action=`${USER_API}` class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <input id="name" type="text" placeholder="Name" class="col-span-1 p-2 bg-[#2b2f38] text-white border border-gray-600 rounded" />
           <input id="last-name" type="text" placeholder="Last name" class="col-span-1 p-2 bg-[#2b2f38] text-white border border-gray-600 rounded" />
           <input id="cellphone" type="number" placeholder="Cellphone" class="col-span-1 p-2 bg-[#2b2f38] text-white border border-gray-600 rounded" />
           <input id="date" type="date" placeholder="Birthday" class="col-span-1 p-2 bg-[#2b2f38] text-white border border-gray-600 rounded" />
-          <input id="img" type="url" placeholder="URL image" class="col-span-2 p-2 bg-[#2b2f38] text-white border border-gray-600 rounded" />
           
-          <div id="preview" class="col-span-2 h-48 w-full bg-cover bg-center rounded-lg border border-gray-600"></div>
+          <input id="img" type="file" accept="image/*" class="col-span-2 h-48 w-full bg-cover bg-center rounded-lg border border-gray-600" />
           
           <div class="col-span-2 flex justify-end">
             <button id="create" type="submit" class="bg-[#2b2f38] w-full text-white px-6 py-2 rounded hover:bg-green-900 transition">
@@ -56,13 +55,4 @@ const users = await res.json();
       </section>
     </div>
   </main>
-
-  <!-- Script para mostrar imagen en tiempo real -->
-  <script type="module">
-    const input = document.querySelector('input[name="image"]');
-    const preview = document.getElementById('preview');
-    input?.addEventListener('input', (e) => {
-      preview.style.backgroundImage = `url('${e.target.value}')`;
-    });
-  </script>
 </Layout>

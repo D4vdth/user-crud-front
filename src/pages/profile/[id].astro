@@ -32,7 +32,7 @@ const user = await res.json();
         </button>
       </form>
 
-      <form method="post" action={`/api/users/${id}?_method=DELETE`} onsubmit="return confirm('Are you sure?')" class="inline">
+      <form method="post" action={`/api/users/${id}?_method=DELETE`} onsubmit="return confirm('Confirm action')" class="inline">
         <button type="submit" class="flex items-center gap-2 bg-slate-700 hover:bg-red-700 px-4 py-2 rounded-md shadow transition">
           🗑️ Delete
         </button>
